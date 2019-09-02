@@ -10,8 +10,8 @@ public enum Forme {
 	CARRE(new Position[] {
 			new Position(0,0),
 			new Position(1,0),
-			new Position(-1,1),
-			new Position(0,-1)
+			new Position(1,1),
+			new Position(0,1)
 	}),
 	LIGNE(new Position[] {
 			new Position(0,0),
@@ -22,20 +22,20 @@ public enum Forme {
 	ESCD(new Position[] {
 			new Position(0,0),
 			new Position(1,0),
-			new Position(-1,-1),
-			new Position(0,-1)
+			new Position(-1,1),
+			new Position(0,1)
 	}),
 	ESCG(new Position[] {
 			new Position(0,0),
 			new Position(-1,0),
 			new Position(0,1),
-			new Position(1,-1)
+			new Position(1,1)
 	}),
 	T(new Position[] {
 			new Position(0,0),
 			new Position(-1,0),
 			new Position(1,0),
-			new Position(0,-1)
+			new Position(0,1)
 	}),
 	LG(new Position[] {
 			new Position(0,0),

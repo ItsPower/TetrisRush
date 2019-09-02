@@ -4,7 +4,7 @@ public class Piece {
 	
 	private Orientation orientation = Orientation.BAS;
 	private Forme forme;
-	private Position positionPlateau = new Position(2,0);
+	private Position positionPlateau = new Position(4,0);
 	private Position positionRelative[] = new Position[4]; //positionRelative[0] = position principale de la piece
 	
 	public Piece() {
@@ -31,7 +31,7 @@ public class Piece {
 	}
 	
 	public boolean translationBas() {
-		positionPlateau.setY(positionPlateau.getY() - 1);
+		positionPlateau.setY(positionPlateau.getY() + 1);
 		return true;
 	}
 
