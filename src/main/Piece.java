@@ -34,4 +34,26 @@ public class Piece {
 		positionPlateau.setY(positionPlateau.getY() - 1);
 		return true;
 	}
+
+	public Orientation getOrientation() {
+		return orientation;
+	}
+
+	public void setOrientation(Orientation orientation) {
+		this.orientation = orientation;
+	}
+
+	public Position getPositionPlateau() {
+		return positionPlateau;
+	}
+
+	public Forme getForme() {
+		return forme;
+	}
+
+	public Position[] getPositionRelative() {
+		return positionRelative;
+	}
+	
+	
 }
