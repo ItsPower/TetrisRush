@@ -16,8 +16,22 @@ public class Piece {
 		return false;
 	}
 	
-	public boolean translation() {
-		return false;
+	
+	/*
+	 * Ajouter conditions collision avec plateau et autres pieces
+	 */
+	public boolean translationGauche() {
+		positionPlateau.setX(positionPlateau.getX() - 1);
+		return true;
 	}
 	
+	public boolean translationDroite() {
+		positionPlateau.setX(positionPlateau.getX() + 1);
+		return true;
+	}
+	
+	public boolean translationBas() {
+		positionPlateau.setY(positionPlateau.getY() - 1);
+		return true;
+	}
 }
