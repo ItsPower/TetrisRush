@@ -12,8 +12,17 @@ public class Piece {
 		positionRelative = forme.getPositionRelative();
 	}
 	
-	public boolean rotation() {
-		return false;
+	public boolean rotationG() {
+		for(int i = 0; i < 4; i++) {
+			positionRelative[i].setPosition(positionRelative[i].getY(), positionRelative[i].getX()*-1);
+		}
+			return true;
+		}
+	public boolean rotationD() {
+		for(int i = 0; i < 4; i++) {
+			positionRelative[i].setPosition(positionRelative[i].getY()*-1, positionRelative[i].getX());
+		}
+		return true;
 	}
 	
 	
