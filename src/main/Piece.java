@@ -2,7 +2,7 @@ package main;
 
 public class Piece {
 	
-	Direction direction = Direction.BAS;
+	Orientation orientation = Orientation.BAS;
 	Forme forme;
 
 	public Piece() {

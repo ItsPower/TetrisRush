@@ -1,6 +1,6 @@
 package main;
 
-public enum Direction {
+public enum Orientation {
 	
 	HAUT, BAS, GAUCHE, DROITE;
 
