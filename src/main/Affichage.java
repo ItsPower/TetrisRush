@@ -18,7 +18,7 @@ public class Affichage implements KeyListener {
 
 	public Affichage() {
 		Terminal term;
-		try {
+		try { 
 			term = TerminalBuilder.terminal();
 			term_height = term.getHeight();
 			term_width = term.getWidth();
