@@ -67,5 +67,12 @@ public class Piece {
 	public Position[] getPositionRelative() {
 		return positionRelative;
 	}
-	
+
+	public Position getAnciennePosition() {
+		return anciennePosition;
+	}
+
+	public Position[] getAnciennePositionRelative() {
+		return anciennePositionRelative;
+	}
 }

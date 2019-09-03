@@ -73,4 +73,17 @@ public class Plateau {
 		}
 	}
 	
+	public void piece(Piece actuel) {
+		Position temp = actuel.getPositionPlateau();
+		for(int i = 0 ; i < actuel.getPositionRelative().length ; i++) {
+			/*
+			 * Modifie le plateau en X;Y pour afficher la piece et mettre la valeur VRAI dans le plateau
+			 * Son ancienne position est supprimé et se met a faux
+			 */
+			if(actuel.getAnciennePosition() != null && actuel.getAnciennePositionRelative() != null) {
+				plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()] = false;
+			}
+			plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()] = true;
+		}
+	}
 }
