@@ -36,7 +36,18 @@ public class Plateau {
 						plateau[k][j] = plateau[k][j-1];
 					}
 				}
-				Main.getInstance().score += 50;
+				if(Main.getInstance().score < 300) {
+					Main.getInstance().score += 50;
+				}
+				if(Main.getInstance().score >= 300 && Main.getInstance().score < 600) {
+					Main.getInstance().score += 75;
+				}
+				if(Main.getInstance().score >= 600 && Main.getInstance().score < 1000) {
+					Main.getInstance().score += 100;
+				}
+				if(Main.getInstance().score >= 1000 && Main.getInstance().score < 200) {
+					Main.getInstance().score += 200;
+				}
 			}
 		}
 	}
