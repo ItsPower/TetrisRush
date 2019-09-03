@@ -82,6 +82,7 @@ public class Plateau {
 			 */
 			if(actuel.getAnciennePosition() != null && actuel.getAnciennePositionRelative() != null) {
 				plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
+				plateau[actuel.getPositionPlateau().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getPositionPlateau().getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
 			}
 		}
 		for(int i = 0 ; i < actuel.getPositionRelative().length ; i++) {
@@ -92,5 +93,19 @@ public class Plateau {
 			plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()] = true;
 		}
 		
+		int yMax = 0;
+		for(int i = 0 ; i < actuel.getPositionRelative().length ; i++) {
+			if(actuel.getPositionRelative()[i].getY() > yMax) yMax = actuel.getPositionRelative()[i].getY();
+		}
+		if(actuel.getPositionPlateau().getY() + yMax >= 14 || collisionBas(Main.getInstance().pi)) {
+			Main.getInstance().pi = new Piece();
+		}
+	}
+	
+	public boolean collisionBas(Piece actuel) {
+		for(int i = 0 ; i < actuel.getPositionRelative().length ; i++) {
+			
+		}
+		return false;
 	}
 }
