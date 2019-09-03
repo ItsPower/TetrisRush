@@ -1,12 +1,11 @@
 package main;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class Affichage implements KeyListener {
 
@@ -15,12 +14,11 @@ public class Affichage implements KeyListener {
 	private int term_height, term_width;
 	private int base_x, base_y;
 	
-	private final int TAILLE_X_CUBE = 4, TAILLE_Y_CUBE = 2;
-	private final int PLATEAU_WIDTH = 40, PLATEAU_HEIGHT = 30;
+	private final int PLATEAU_WIDTH = 44, PLATEAU_HEIGHT = 30; // 40,30
 
 	public Affichage() {
 		Terminal term;
-		try {
+		try { 
 			term = TerminalBuilder.terminal();
 			term_height = term.getHeight();
 			term_width = term.getWidth();
@@ -48,7 +46,20 @@ public class Affichage implements KeyListener {
 	}
 	
 	public void printPiece(Piece p) {
+		Position base = p.getPositionPlateau();
+		Position[] posis = p.getPositionRelative();
+		for(Position tmp : posis) {
+			printCube(new Position(base.getX() + tmp.getX(), base.getY() + tmp.getY()));
+		}
+	}
+
+	private void printCube(Position pos) { //TODO COULEURS TO ADD
 		
+		curseur(base_y + pos.getY()*2, base_x + pos.getX()*4);
+		syso("\033[91m████\033[37m");
+		
+		curseur(base_y + pos.getY()*2+1, base_x + pos.getX()*4);
+		syso("\033[91m████\033[37m");
 	}
 	
 	public void syso(String s) {
