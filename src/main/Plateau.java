@@ -99,4 +99,17 @@ public class Plateau {
 		}
 		return false;
 	}
+	
+	public boolean collisionCote(Position temp) {
+		Piece actuel = Main.getInstance().pi;
+		for(int i = 0 ; i < actuel.getPositionRelative().length ; i++) {
+				boolean memePiece = false;
+				for(int j = 0 ; j < actuel.getPositionRelative().length ; j++) {
+					if((temp.getX() + actuel.getPositionRelative()[i].getX()) == (actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[j].getX())
+							&& (temp.getY() + actuel.getPositionRelative()[i].getY()) == (actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[j].getY())) memePiece = true;
+				}
+				if(!memePiece && plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()]) return true;
+		}
+		return false;
+	}
 }
