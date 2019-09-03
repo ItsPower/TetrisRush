@@ -1,10 +1,7 @@
 package main;
 
-import java.awt.event.KeyListener;
 import java.io.Console;
 import java.io.Reader;
-
-import javafx.scene.input.KeyCode;
 
 public class Controleur {
 
