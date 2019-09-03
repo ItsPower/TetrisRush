@@ -24,7 +24,7 @@ public class Controleur {
 		Console console = System.console();
 		Reader reader = console.reader();
 		try {
-			while(true) {
+			while(true) { 
 				code = reader.read();
 				System.out.print("\b");
 				if(code == ROTATION_DROITE) {

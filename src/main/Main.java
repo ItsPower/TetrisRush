@@ -33,7 +33,7 @@ public class Main {
 
 		/*while(true) {
 			aff.update();*/
-		
+		 
 
 		pi = new Piece();
 		p.piece(pi);

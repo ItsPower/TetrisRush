@@ -10,8 +10,7 @@ public class Piece {
 	private Position anciennePositionRelative [] = new Position[4];
 	
 	public Piece() {
-		//this.forme = Forme.randomForme();
-		this.forme = Forme.LIGNE;
+		this.forme = Forme.randomForme();
 		positionRelative = forme.getPositionRelative();
 		anciennePositionRelative = positionRelative;
 	}
@@ -40,16 +39,18 @@ public class Piece {
 	 * Ajouter conditions collision avec plateau et autres pieces
 	 */
 	
-	public Position translationGauche() {
-		anciennePosition.setPosition(positionPlateau.getX(), positionPlateau.getY());
-		positionPlateau.setPosition(positionPlateau.getX() - 1, positionPlateau.getY());
-		return new Position(positionPlateau.getX() -1, positionPlateau.getY());
+	public void translationGauche() {
+		if(!collisionCoter(new Position(positionPlateau.getX() - 1, positionPlateau.getY()))) {
+			anciennePosition.setPosition(positionPlateau.getX(), positionPlateau.getY());
+			positionPlateau.setPosition(positionPlateau.getX() - 1, positionPlateau.getY());
+		}
 	}
 	
-	public Position translationDroite() {
-		anciennePosition.setPosition(positionPlateau.getX(), positionPlateau.getY());
-		positionPlateau.setPosition(positionPlateau.getX() + 1, positionPlateau.getY());
-		return new Position(positionPlateau.getX() + 1, positionPlateau.getY());
+	public void translationDroite() {
+		if(!collisionCoter(new Position(positionPlateau.getX() + 1, positionPlateau.getY()))) {
+			anciennePosition.setPosition(positionPlateau.getX(), positionPlateau.getY());
+			positionPlateau.setPosition(positionPlateau.getX() + 1, positionPlateau.getY());
+		}
 	}
 	
 	public Position translationBas() {
@@ -75,7 +76,7 @@ public class Piece {
 	}
 
 	public Position[] getPositionRelative() {
-		return positionRelative;
+		return positionRelative; 
 	}
 
 	public Position getAnciennePosition() {
@@ -84,5 +85,13 @@ public class Piece {
 
 	public Position[] getAnciennePositionRelative() {
 		return anciennePositionRelative;
+	}
+	
+	private boolean collisionCoter(Position temp) {
+		for(int i = 0 ; i < positionRelative.length ; i++) {
+			if(temp.getX() + positionRelative[i].getX() < 0 || temp.getX() + positionRelative[i].getX() > 10) 
+				return true;
+		}
+		return false;
 	}
 }

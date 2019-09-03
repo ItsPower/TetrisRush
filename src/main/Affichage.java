@@ -75,7 +75,7 @@ public class Affichage{
 	
 	public void syso(String s) {
 		System.out.print(s);
-	}
+	} 
 
 	public void curseur(int lig, int col) {
 		syso("\033[" + lig + ";" + col + "H");

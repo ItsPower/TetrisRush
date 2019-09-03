@@ -82,7 +82,7 @@ public class Plateau {
 			Main.getInstance().pi = new Piece();
 		}
 		eliminerLignes();
-	}
+	} 
 	/*
 	 * Oui ça marche
 	 */
