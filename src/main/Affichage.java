@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import org.jline.terminal.Terminal;
@@ -11,10 +9,10 @@ public class Affichage{
 
 	private static Affichage instance;
 	
-	private int term_height, term_width;
-	private int base_x, base_y;
+	public int term_height, term_width;
+	public int base_x, base_y;
 	
-	private final int PLATEAU_WIDTH = 44, PLATEAU_HEIGHT = 30; // 40,30
+	public final int PLATEAU_WIDTH = 44, PLATEAU_HEIGHT = 30; // 40,30
 
 	public Affichage() {
 		Terminal term;
@@ -30,7 +28,7 @@ public class Affichage{
 	
 	public void update() {
 		clear();
-		String titre = "TETRIS S3 - Projet AGILE";
+		String titre = "TETRIS - Projet AGILE S3";
 		curseur(3, term_width/2-titre.length()/2);
 		syso(titre);
 		
@@ -64,7 +62,7 @@ public class Affichage{
 		}
 	}
 
-	private void printCube(Position pos) { //TODO COULEURS TO ADD
+	public void printCube(Position pos) { //TODO COULEURS TO ADD
 		
 		curseur(base_y + pos.getY()*2, base_x + pos.getX()*4);
 		syso("████");
