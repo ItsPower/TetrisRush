@@ -36,6 +36,7 @@ public class Plateau {
 						plateau[k][j] = plateau[k][j-1];
 					}
 				}
+				Main.getInstance().score += 50;
 			}
 		}
 	}
