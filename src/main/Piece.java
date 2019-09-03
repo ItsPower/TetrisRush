@@ -17,23 +17,34 @@ public class Piece {
 	
 	public Position[] rotationG() {
 		Position[] positionTemp = new Position[4];
-		for(int i = 0; i < 4; i++) {
-			Main.getInstance().p.getPlateau()[positionPlateau.getX() + positionRelative[i].getX()][positionPlateau.getY() + positionRelative[i].getY()] = false;
-			anciennePositionRelative[i] = new Position(positionRelative[i]);
-			positionRelative[i].setPosition(positionRelative[i].getY(), positionRelative[i].getX()*-1);
+		for(int i = 0 ; i < 4 ; i++) {
 			positionTemp[i] = new Position(positionRelative[i].getY(), positionRelative[i].getX()*-1);
 		}
-			return positionTemp;
+		if(!collisionRotation(positionTemp)) {
+			for(int i = 0; i < 4; i++) {
+				Main.getInstance().p.getPlateau()[positionPlateau.getX() + positionRelative[i].getX()][positionPlateau.getY() + positionRelative[i].getY()] = false;
+				anciennePositionRelative[i] = new Position(positionRelative[i]);
+				positionRelative[i].setPosition(positionRelative[i].getY(), positionRelative[i].getX()*-1);
+				positionTemp[i] = new Position(positionRelative[i].getY(), positionRelative[i].getX()*-1);
+			}
+		}
+		return positionTemp;
 	}
 	
 	public Position[] rotationD() {
 		Position[] positionTemp = new Position[4];
-		for(int i = 0; i < 4; i++) {
-			Main.getInstance().p.getPlateau()[positionPlateau.getX() + positionRelative[i].getX()][positionPlateau.getY() + positionRelative[i].getY()] = false;
-			anciennePositionRelative[i] = new Position(positionRelative[i]);
-			positionRelative[i].setPosition(positionRelative[i].getY()*-1, positionRelative[i].getX());
+		for(int i = 0 ; i < 4 ; i++) {
 			positionTemp[i] = new Position(positionRelative[i].getY()*-1, positionRelative[i].getX());
 		}
+		if(!collisionRotation(positionTemp)) {
+			for(int i = 0; i < 4; i++) {
+				Main.getInstance().p.getPlateau()[positionPlateau.getX() + positionRelative[i].getX()][positionPlateau.getY() + positionRelative[i].getY()] = false;
+				anciennePositionRelative[i] = new Position(positionRelative[i]);
+				positionRelative[i].setPosition(positionRelative[i].getY()*-1, positionRelative[i].getX());
+				positionTemp[i] = new Position(positionRelative[i].getY()*-1, positionRelative[i].getX());
+			}
+		}
+		
 		return positionTemp;
 	}
 	
@@ -94,6 +105,16 @@ public class Piece {
 			if(temp.getX() + positionRelative[i].getX() < 0 || temp.getX() + positionRelative[i].getX() > 10) 
 				return true;
 			if(Main.getInstance().p.collisionCote(temp))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean collisionRotation(Position[] temp) {
+		for(int i = 0 ; i < positionRelative.length ; i++) {
+			if(positionPlateau.getX() + temp[i].getX() < 0 || positionPlateau.getX() + temp[i].getX() > 10) 
+				return true;
+			if(positionPlateau.getY() + temp[i].getY() < 0 || positionPlateau.getY() + temp[i].getY() > 15) 
 				return true;
 		}
 		return false;
