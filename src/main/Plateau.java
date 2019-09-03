@@ -25,8 +25,8 @@ public class Plateau {
 	}
 	
 	public void eliminerLignes() {
-		boolean lignePleine = true;
 		for(int i = plateau[0].length-1 ; i > 0 ; i--) {
+			boolean lignePleine = true;
 			for(int j = 0 ; j < plateau.length ; j++) {
 				if(!plateau[j][i]) lignePleine = false;
 			}
