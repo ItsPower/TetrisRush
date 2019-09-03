@@ -76,7 +76,7 @@ public class Plateau {
 				try {
 					plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
 				} catch(ArrayIndexOutOfBoundsException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 				//plateau[temp.getX() + actuel.getAnciennePositionRelative()[i].getX()][temp.getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
 				//plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()] = false;
@@ -90,7 +90,7 @@ public class Plateau {
 			try {
 				plateau[actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[i].getX()][actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[i].getY()] = true;
 			} catch(ArrayIndexOutOfBoundsException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		
