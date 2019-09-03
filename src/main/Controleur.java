@@ -13,12 +13,6 @@ public class Controleur {
 
 	final static int ATTENDRE = 115; // s
 	
-	public static void main(String[] args) {
-		rawMode();
-		detectionTouches();
-		lineMode();
-	}
-
 	public static void detectionTouches() {
 		int code;
 		Console console = System.console();
@@ -27,20 +21,25 @@ public class Controleur {
 			while(true) { 
 				code = reader.read();
 				System.out.print("\b");
+				System.out.println(code);
+				
 				if(code == ROTATION_DROITE) {
 					Main.getInstance().pi.rotationD();
+					
 				} else if(code == ROTATION_GAUCHE) {
-					//System.out.print("Rotation gauche\r");
 					Main.getInstance().pi.rotationG();
+					
 				} else if(code == TRANSLATION_DROITE) {
 					Main.getInstance().pi.translationDroite();
+					
 				} else if(code == TRANSLATION_GAUCHE) {
 					Main.getInstance().pi.translationGauche();
-					System.out.print("Translation gauche\r");
+					
 				} else if(code == ATTENDRE) {
-					//System.out.print("Attendre\r");
 					Main.getInstance().pi.translationBas();
+					
 				}
+				
 				Main.getInstance().p.piece(Main.getInstance().pi);
 				Main.getInstance().aff.update();
 			}
