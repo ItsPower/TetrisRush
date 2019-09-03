@@ -36,28 +36,16 @@ public class Piece {
 	 * Ajouter conditions collision avec plateau et autres pieces
 	 */
 	
-	public Position[] translationGauche() {
-		Position[] positionTemp = new Position[4];
-		for(int i = 0; i < 4; i++) {
-			positionTemp[i] = new Position(positionRelative[i].getX() - 1, positionRelative[i].getY());
-		}
-		return positionTemp;
+	public Position translationGauche() {
+		return new Position(positionPlateau.getX() -1, positionPlateau.getY());
 	}
 	
-	public Position[] translationDroite() {
-		Position[] positionTemp = new Position[4];
-		for(int i = 0; i < 4; i++) {
-			positionTemp[i] = new Position(positionRelative[i].getX() + 1, positionRelative[i].getY());
-		}
-		return positionTemp;
+	public Position translationDroite() {
+		return new Position(positionPlateau.getX() + 1, positionPlateau.getY());
 	}
 	
-	public Position[] translationBas() {
-		Position[] positionTemp = new Position[4];
-		for(int i = 0; i < 4; i++) {
-			positionTemp[i] = new Position(positionRelative[i].getX(), positionRelative[i].getY() + 1);
-		}
-		return positionTemp;
+	public Position translationBas() {
+		return new Position(positionPlateau.getX(), positionPlateau.getY() + 1);
 	}
 
 	public Orientation getOrientation() {
