@@ -72,10 +72,10 @@ public class Plateau {
 			 * Modifie le plateau en X;Y pour afficher la piece et mettre la valeur VRAI dans le plateau
 			 * Son ancienne position est supprimé et se met a faux
 			 */
-			if(actuel.getAnciennePosition() != null && actuel.getAnciennePositionRelative() != null) {
+			if(actuel.getAnciennePosition() != null && actuel.getAnciennePositionRelative() != null && actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX() >= 0 && actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY() >= 0) {
 				plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
-				plateau[temp.getX() + actuel.getAnciennePositionRelative()[i].getX()][temp.getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
-				plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()] = false;
+				//plateau[temp.getX() + actuel.getAnciennePositionRelative()[i].getX()][temp.getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
+				//plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()] = false;
 			}
 		}
 		for(int i = 0 ; i < actuel.getPositionRelative().length ; i++) {
@@ -120,7 +120,7 @@ public class Plateau {
 					if((temp.getX() + actuel.getPositionRelative()[i].getX()) == (actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[j].getX())
 							&& (temp.getY() + actuel.getPositionRelative()[i].getY()) == (actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[j].getY())) memePiece = true;
 				}
-				if(!memePiece && plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()]) return true;
+				if(!memePiece && temp.getX() + actuel.getPositionRelative()[i].getX() >= 0 && temp.getX() + actuel.getPositionRelative()[i].getX() < 10 && plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()]) return true;
 		}
 		return false;
 	}

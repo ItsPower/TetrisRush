@@ -91,7 +91,9 @@ public class Piece {
 	
 	private boolean collisionCoter(Position temp) {
 		for(int i = 0 ; i < positionRelative.length ; i++) {
-			if(temp.getX() + positionRelative[i].getX() < 0 || temp.getX() + positionRelative[i].getX() > 10 || Main.getInstance().p.collisionCote(temp)) 
+			if(temp.getX() + positionRelative[i].getX() < 0 || temp.getX() + positionRelative[i].getX() > 10) 
+				return true;
+			if(Main.getInstance().p.collisionCote(temp))
 				return true;
 		}
 		return false;

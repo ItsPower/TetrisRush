@@ -25,21 +25,15 @@ public class Controleur {
 				
 				if(code == ROTATION_DROITE) {
 					Main.getInstance().pi.rotationD();
-					
 				} else if(code == ROTATION_GAUCHE) {
 					Main.getInstance().pi.rotationG();
-					
 				} else if(code == TRANSLATION_DROITE) {
 					Main.getInstance().pi.translationDroite();
-					
 				} else if(code == TRANSLATION_GAUCHE) {
 					Main.getInstance().pi.translationGauche();
-					
 				} else if(code == ATTENDRE) {
 					Main.getInstance().pi.translationBas();
-					
 				}
-				
 				Main.getInstance().p.piece(Main.getInstance().pi);
 				Main.getInstance().aff.update();
 			}
