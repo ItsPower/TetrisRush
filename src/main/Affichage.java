@@ -8,10 +8,10 @@ import org.jline.terminal.TerminalBuilder;
 public class Affichage{
 
 	private static Affichage instance;
-	
+
 	public int term_height, term_width;
 	public int base_x, base_y;
-	
+
 	public final int PLATEAU_WIDTH = 44, PLATEAU_HEIGHT = 30; // 40,30
 
 	public Affichage() {
@@ -25,33 +25,41 @@ public class Affichage{
 		}
 		update();
 	}
-	
+
 	public void update() {
 		clear();
+		syso("\033[?25l");
 		String titre = "TETRIS - Projet AGILE S3";
 		curseur(3, term_width/2-titre.length()/2);
 		syso(titre);
-		
+
 		base_x = term_width/2-PLATEAU_WIDTH/2;
 		base_y = 8;
-		
+
 		for(int x=base_x-4; x<base_x+PLATEAU_WIDTH+4; x++)
 			for(int y=6; y<PLATEAU_HEIGHT+10; y++) {
 				curseur(y, x);
 				syso("█");
 			}
-		for(int x=base_x; x<base_x+PLATEAU_WIDTH; x++)
+		for(int x=base_x; x<base_x+PLATEAU_WIDTH; x++) {
 			for(int y=base_y; y<PLATEAU_HEIGHT+base_y; y++) {
 				curseur(y, x);
 				syso(" ");
 			}
-		
+			
+		}
+
 		boolean[][] plateau = Main.getInstance().p.getPlateau();
 		for(int x=0;x<plateau.length;x++)
 			for(int y=0;y<plateau[0].length;y++) {
 				if(plateau[x][y])
 					printCube(new Position(x,y));
 			}
+		if(!Main.getInstance().isInMenu) {
+			
+			curseur(16, base_x-15);
+			syso(Main.getInstance().score+"");
+		}
 	}
 
 	public void printPiece(Piece p) {
@@ -63,14 +71,14 @@ public class Affichage{
 	}
 
 	public void printCube(Position pos) { //TODO COULEURS TO ADD
-		
+
 		curseur(base_y + pos.getY()*2, base_x + pos.getX()*4);
-		syso("████");
-		
+		syso("\u001B[31m████\u001B[37m");
+
 		curseur(base_y + pos.getY()*2+1, base_x + pos.getX()*4);
-		syso("████");
+		syso("\u001B[31m████\u001B[37m");
 	}
-	
+
 	public void syso(String s) {
 		System.out.print(s);
 	} 
@@ -78,7 +86,7 @@ public class Affichage{
 	public void curseur(int lig, int col) {
 		syso("\033[" + lig + ";" + col + "H");
 	}
-	
+
 	public void clear() {
 		syso("\033[2J");
 	}

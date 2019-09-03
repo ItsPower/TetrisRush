@@ -73,9 +73,6 @@ public class Main {
 		}, 0, 1000);
 		
 		Controleur.detectionTouches();
-		
-		/*Thread.sleep(100);
-		}*/
 	}
 
 	public static Main getInstance() {
