@@ -24,39 +24,16 @@ public class Plateau {
 		this.plateau[x][y] = !this.plateau[x][y];
 	}
 	
-	public boolean checkAllLignes() {
-		for(int i = 0; i < x; i++) {
-			if(checkLigneV(i)) {
-				return true;
+	public void eliminerLignes() {
+		boolean lignePleine = true;
+		for(int i = plateau[0].length-1 ; i > 0 ; i--) {
+			for(int j = 0 ; j < plateau.length ; j++) {
+				if(!plateau[j][i]) lignePleine = false;
 			}
-		}
-		return false;
-	}
-	
-	public boolean checkLigneV(int idx) {
-		for(int i = 0; i < this.y; i++) {
-			if(!this.plateau[idx][i]) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public void setLigne(int idx, boolean b) {
-		for(int i = 0; i < y; i++) {
-			this.plateau[idx][i] = b;
-		}
-	}
-	
-	public void EliminerLignes() {
-		while(checkAllLignes()) {
-			for(int l = this.x-1; l > 0; l--) {
-				if(this.checkLigneV(l)) {
-					for(int i = l; i>0; i--){
-						for(int j = 0 ; j < plateau[0].length ; j++) {
-							plateau[i][j] = false;
-							plateau[i][j] = plateau [i][j-1];
-						}
+			if(lignePleine) {
+				for(int j = i ; j > 0 ; j--) {
+					for(int k = 0 ; k < plateau.length ; k++) {
+						plateau[k][j] = plateau[k][j-1];
 					}
 				}
 			}
@@ -104,7 +81,7 @@ public class Plateau {
 		if(actuel.getPositionPlateau().getY() + yMax >= 14 || collisionBas(Main.getInstance().pi)) {
 			Main.getInstance().pi = new Piece();
 		}
-		EliminerLignes();
+		eliminerLignes();
 	}
 	/*
 	 * Oui ça marche
