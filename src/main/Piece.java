@@ -18,7 +18,7 @@ public class Piece {
 	public Position[] rotationG() {
 		Position[] positionTemp = new Position[4];
 		for(int i = 0; i < 4; i++) {
-			anciennePositionRelative[i] = positionRelative[i];
+			anciennePositionRelative[i] = new Position(positionRelative[i]);
 			positionRelative[i].setPosition(positionRelative[i].getY(), positionRelative[i].getX()*-1);
 			positionTemp[i] = new Position(positionRelative[i].getY(), positionRelative[i].getX()*-1);
 		}
@@ -28,7 +28,7 @@ public class Piece {
 	public Position[] rotationD() {
 		Position[] positionTemp = new Position[4];
 		for(int i = 0; i < 4; i++) {
-			anciennePositionRelative[i] = positionRelative[i];
+			anciennePositionRelative[i] = new Position(positionRelative[i]);
 			positionRelative[i].setPosition(positionRelative[i].getY()*-1, positionRelative[i].getX());
 			positionTemp[i] = new Position(positionRelative[i].getY()*-1, positionRelative[i].getX());
 		}
