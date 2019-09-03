@@ -81,9 +81,16 @@ public class Plateau {
 			 * Son ancienne position est supprimé et se met a faux
 			 */
 			if(actuel.getAnciennePosition() != null && actuel.getAnciennePositionRelative() != null) {
-				plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()] = false;
+				plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
 			}
+		}
+		for(int i = 0 ; i < actuel.getPositionRelative().length ; i++) {
+			/*
+			 * Modifie le plateau en X;Y pour afficher la piece et mettre la valeur VRAI dans le plateau
+			 * Son ancienne position est supprimé et se met a faux
+			 */
 			plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()] = true;
 		}
+		
 	}
 }

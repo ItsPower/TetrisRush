@@ -28,16 +28,21 @@ public class Controleur {
 				code = reader.read();
 				System.out.print("\b");
 				if(code == ROTATION_DROITE) {
-					System.out.print("Rotation droite\r");
+					Main.getInstance().pi.rotationD();
 				} else if(code == ROTATION_GAUCHE) {
-					System.out.print("Rotation gauche\r");
+					//System.out.print("Rotation gauche\r");
+					Main.getInstance().pi.rotationG();
 				} else if(code == TRANSLATION_DROITE) {
-					System.out.print("Translation droite\r");
+					Main.getInstance().pi.translationDroite();
 				} else if(code == TRANSLATION_GAUCHE) {
+					Main.getInstance().pi.translationGauche();
 					System.out.print("Translation gauche\r");
 				} else if(code == ATTENDRE) {
-					System.out.print("Attendre\r");
+					//System.out.print("Attendre\r");
+					Main.getInstance().pi.translationBas();
 				}
+				Main.getInstance().p.piece(Main.getInstance().pi);
+				Main.getInstance().aff.update();
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

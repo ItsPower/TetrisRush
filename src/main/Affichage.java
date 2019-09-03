@@ -47,6 +47,13 @@ public class Affichage{
 				curseur(y, x);
 				syso(" ");
 			}
+		
+		boolean[][] plateau = Main.getInstance().p.getPlateau();
+		for(int x=0;x<plateau.length;x++)
+			for(int y=0;y<plateau[0].length;y++) {
+				if(plateau[x][y])
+					printCube(new Position(x,y));
+			}
 	}
 
 	public void printPiece(Piece p) {
