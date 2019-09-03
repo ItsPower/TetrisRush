@@ -11,7 +11,9 @@ public class Piece {
 	
 	public Piece() {
 		this.forme = Forme.randomForme();
-		positionRelative = forme.getPositionRelative();
+		for(int i = 0 ; i < 4 ; i++) {
+			positionRelative[i] = new Position(forme.getPositionRelative()[i]);
+		}
 		anciennePositionRelative = positionRelative;
 	}
 	
