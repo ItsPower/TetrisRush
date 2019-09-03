@@ -2,7 +2,10 @@ package main;
 
 public class FinDePartie {
 
-	public boolean Fin(Plateau p) {
-		return p.getPlateau()[0][5];
+	public static boolean fin(Plateau p) {
+		for(int i = 0 ; i < 10 ; i++) {
+			if(p.getPlateau()[i][0]) return true;
+		}
+		return false;
 	}
 }

@@ -43,9 +43,10 @@ public class Main {
 
 			@Override
 			public void run() {
-				pi.translationBas();
+				if(pi.getPositionPlateau().getY() < 14) pi.translationBas();
 				p.piece(pi);
 				aff.update();
+				if(FinDePartie.fin(p)) System.exit(0);
 			}
 			
 		}, 0, 1000);
