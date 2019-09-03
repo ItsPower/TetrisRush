@@ -68,7 +68,6 @@ public class Main {
 				if(instance.pi.getPositionPlateau().getY() < 14) instance.pi.translationBas();
 				instance.p.piece(instance.pi);
 				instance.aff.update();
-				if(FinDePartie.fin(instance.p)) System.exit(0);
 			}
 			
 		}, 0, 1000);

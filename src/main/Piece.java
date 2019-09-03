@@ -7,7 +7,7 @@ public class Piece {
 	private Position positionPlateau = new Position(4,0);
 	private Position positionRelative[] = new Position[4]; //positionRelative[0] = position principale de la piece
 	private Position anciennePosition = new Position(4, 0);
-	private Position anciennePositionRelative [] = new Position[4];
+	private Position anciennePositionRelative[] = new Position[4];
 	
 	public Piece() {
 		this.forme = Forme.randomForme();

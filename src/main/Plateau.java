@@ -73,7 +73,11 @@ public class Plateau {
 			 * Son ancienne position est supprimé et se met a faux
 			 */
 			if(actuel.getAnciennePosition() != null && actuel.getAnciennePositionRelative() != null && actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX() >= 0 && actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY() >= 0) {
-				plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
+				try {
+					plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
+				} catch(ArrayIndexOutOfBoundsException e) {
+					e.printStackTrace();
+				}
 				//plateau[temp.getX() + actuel.getAnciennePositionRelative()[i].getX()][temp.getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
 				//plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()] = false;
 			}
@@ -83,7 +87,11 @@ public class Plateau {
 			 * Modifie le plateau en X;Y pour afficher la piece et mettre la valeur VRAI dans le plateau
 			 * Son ancienne position est supprimé et se met a faux
 			 */
-			plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()] = true;
+			try {
+				plateau[actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[i].getX()][actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[i].getY()] = true;
+			} catch(ArrayIndexOutOfBoundsException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		int yMax = 0;
@@ -91,9 +99,10 @@ public class Plateau {
 			if(actuel.getPositionRelative()[i].getY() > yMax) yMax = actuel.getPositionRelative()[i].getY();
 		}
 		if(actuel.getPositionPlateau().getY() + yMax >= 14 || collisionBas(Main.getInstance().pi)) {
+			if(FinDePartie.fin(Main.getInstance().p)) System.exit(0);
+			eliminerLignes();
 			Main.getInstance().pi = new Piece();
 		}
-		eliminerLignes();
 	} 
 	/*
 	 * Oui ça marche
