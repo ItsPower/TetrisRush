@@ -10,7 +10,8 @@ public class Piece {
 	private Position anciennePositionRelative [] = new Position[4];
 	
 	public Piece() {
-		this.forme = Forme.randomForme();
+		//this.forme = Forme.randomForme();
+		this.forme = Forme.LIGNE;
 		positionRelative = forme.getPositionRelative();
 		anciennePositionRelative = positionRelative;
 	}

@@ -53,7 +53,10 @@ public class Plateau {
 			for(int l = this.x-1; l > 0; l--) {
 				if(this.checkLigneV(l)) {
 					for(int i = l; i>0; i--){
-						plateau[i] = plateau [i-1];
+						for(int j = 0 ; j < plateau[0].length ; j++) {
+							plateau[i][j] = false;
+							plateau[i][j] = plateau [i][j-1];
+						}
 					}
 				}
 			}
@@ -101,6 +104,7 @@ public class Plateau {
 		if(actuel.getPositionPlateau().getY() + yMax >= 14 || collisionBas(Main.getInstance().pi)) {
 			Main.getInstance().pi = new Piece();
 		}
+		EliminerLignes();
 	}
 	/*
 	 * Oui ça marche
