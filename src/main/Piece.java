@@ -6,42 +6,58 @@ public class Piece {
 	private Forme forme;
 	private Position positionPlateau = new Position(2,0);
 	private Position positionRelative[] = new Position[4]; //positionRelative[0] = position principale de la piece
+	private Position anciennePosition;
+	private Position anciennePositionRelative [] = new Position[4];
+	private Plateau plateau;
 	
-	public Piece() {
+	public Piece(Plateau plateau) {
 		this.forme = Forme.randomForme();
 		positionRelative = forme.getPositionRelative();
+		
 	}
 	
-	public boolean rotationG() {
+	public Position[] rotationG() {
+		Position[] positionTemp = new Position[4];
 		for(int i = 0; i < 4; i++) {
-			positionRelative[i].setPosition(positionRelative[i].getY(), positionRelative[i].getX()*-1);
+			positionTemp[i] = new Position(positionRelative[i].getY(), positionRelative[i].getX()*-1);
 		}
-			return true;
-		}
-	public boolean rotationD() {
-		for(int i = 0; i < 4; i++) {
-			positionRelative[i].setPosition(positionRelative[i].getY()*-1, positionRelative[i].getX());
-		}
-		return true;
+			return positionTemp;
 	}
 	
+	public Position[] rotationD() {
+		Position[] positionTemp = new Position[4];
+		for(int i = 0; i < 4; i++) {
+			positionTemp[i] = new Position(positionRelative[i].getY()*-1, positionRelative[i].getX());
+		}
+		return positionTemp;
+	}
 	
 	/*
 	 * Ajouter conditions collision avec plateau et autres pieces
 	 */
-	public boolean translationGauche() {
-		positionPlateau.setX(positionPlateau.getX() - 1);
-		return true;
+	
+	public Position[] translationGauche() {
+		Position[] positionTemp = new Position[4];
+		for(int i = 0; i < 4; i++) {
+			positionTemp[i] = new Position(positionRelative[i].getX() - 1, positionRelative[i].getY());
+		}
+		return positionTemp;
 	}
 	
-	public boolean translationDroite() {
-		positionPlateau.setX(positionPlateau.getX() + 1);
-		return true;
+	public Position[] translationDroite() {
+		Position[] positionTemp = new Position[4];
+		for(int i = 0; i < 4; i++) {
+			positionTemp[i] = new Position(positionRelative[i].getX() + 1, positionRelative[i].getY());
+		}
+		return positionTemp;
 	}
 	
-	public boolean translationBas() {
-		positionPlateau.setY(positionPlateau.getY() - 1);
-		return true;
+	public Position[] translationBas() {
+		Position[] positionTemp = new Position[4];
+		for(int i = 0; i < 4; i++) {
+			positionTemp[i] = new Position(positionRelative[i].getX(), positionRelative[i].getY() + 1);
+		}
+		return positionTemp;
 	}
 
 	public Orientation getOrientation() {
@@ -63,6 +79,5 @@ public class Piece {
 	public Position[] getPositionRelative() {
 		return positionRelative;
 	}
-	
 	
 }
