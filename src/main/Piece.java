@@ -118,6 +118,8 @@ public class Piece {
 				return true;
 			if(positionPlateau.getY() + temp[i].getY() < 0 || positionPlateau.getY() + temp[i].getY() > 15) 
 				return true;
+			if(Main.getInstance().p.collisionRotation(temp))
+				return true;
 		}
 		return false;
 	}
