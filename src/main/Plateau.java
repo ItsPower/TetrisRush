@@ -48,6 +48,7 @@ public class Plateau {
 				if(Main.getInstance().score >= 1000 && Main.getInstance().score < 200) {
 					Main.getInstance().score += 200;
 				}
+				Main.getInstance().max *= 0.95;
 			}
 		}
 	}

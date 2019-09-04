@@ -14,6 +14,8 @@ public class Main {
 	public boolean isInMenu;
 	public int selection_menu;
 	public int score;
+	public TimerTask task;
+	public int max;
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		instance = new Main();
@@ -23,6 +25,7 @@ public class Main {
 		instance.isInMenu = true;
 		instance.selection_menu = 1;
 		instance.score = 0;
+		instance.max = 650;
 		Controleur.rawMode();
 		
 		while(instance.isInMenu) {
@@ -61,15 +64,20 @@ public class Main {
 		instance.p.piece(instance.pi);
 		
 		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-
+		instance.task = new TimerTask() {
+			int time = 0;
 			@Override
 			public void run() {
+				if(time++ < Main.getInstance().max) {
+					return;
+				}
+				time = 0;
 				if(instance.pi.getPositionPlateau().getY() < 14) instance.pi.translationBas();
 				instance.p.piece(instance.pi);
 				instance.aff.update();
 			}
-		}, 0, 650);
+		};
+		timer.schedule(instance.task, 0, 1);
 		Controleur.detectionTouches();
 	}
 
