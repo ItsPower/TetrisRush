@@ -79,7 +79,7 @@ public class Affichage{
 
 		curseur(base_y + pos.getY()*2+1, base_x + pos.getX()*4);
 		syso(c.color+"████"+Color.WHITE.color);
-	}
+	} 
 
 	public void syso(String s) {
 		System.out.print(s);

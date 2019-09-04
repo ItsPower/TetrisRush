@@ -35,7 +35,7 @@ public class Plateau {
 					for(int k = 0 ; k < plateau.length ; k++) {
 						plateau[k][j] = plateau[k][j-1];
 					}
-				}
+				} 
 				if(Main.getInstance().score < 300) {
 					Main.getInstance().score += 50;
 				}
