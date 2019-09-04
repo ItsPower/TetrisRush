@@ -38,16 +38,21 @@ public class Affichage{
 
 		for(int x=base_x-4; x<base_x+PLATEAU_WIDTH+4; x++)
 			for(int y=6; y<PLATEAU_HEIGHT+10; y++) {
+				
+				if(x > base_x-1 && x < base_x+PLATEAU_WIDTH 
+						&& y > 7 && y < PLATEAU_HEIGHT+8) continue;
+				
+				
 				curseur(y, x);
 				syso("█");
 			}
-		for(int x=base_x; x<base_x+PLATEAU_WIDTH; x++) {
+		/*for(int x=base_x; x<base_x+PLATEAU_WIDTH; x++) {
 			for(int y=base_y; y<PLATEAU_HEIGHT+base_y; y++) {
 				curseur(y, x);
 				syso(" ");
 			}
 			
-		}
+		}*/
 
 		Color[][] plateau = Main.getInstance().p.getPlateau();
 		for(int x=0;x<plateau.length;x++)
