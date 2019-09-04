@@ -13,7 +13,7 @@ public class Controleur {
 
 	final static int ATTENDRE = 115; // s
 	final static int QUITTER = 112; //p
-
+	
 	public static void detectionTouches() {
 		int code;
 		Console console = System.console();

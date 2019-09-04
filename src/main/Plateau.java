@@ -133,5 +133,4 @@ public class Plateau {
 		}
 		return false;
 	}
-
 }

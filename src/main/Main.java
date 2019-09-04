@@ -70,8 +70,6 @@ public class Main {
 				instance.aff.update();
 			}
 		}, 0, 650);
-
-		
 		Controleur.detectionTouches();
 	}
 
