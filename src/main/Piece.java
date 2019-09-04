@@ -10,7 +10,13 @@ public class Piece {
 	private Position anciennePositionRelative[] = new Position[4];
 	
 	public Piece() {
-		this.forme = Forme.randomForme();
+		if(Main.getInstance().pi == null) {
+			this.forme = Forme.randomForme();
+		} else {
+			do {
+				this.forme = Forme.randomForme();
+			} while(this.forme == Main.getInstance().pi.forme);
+		}
 		for(int i = 0 ; i < 4 ; i++) {
 			positionRelative[i] = new Position(forme.getPositionRelative()[i]);
 		}

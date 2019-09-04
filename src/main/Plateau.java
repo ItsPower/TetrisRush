@@ -142,7 +142,7 @@ public class Plateau {
 					if((actuel.getPositionPlateau().getX() + temp[i].getX()) == (actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[j].getX())
 							&& (actuel.getPositionPlateau().getY() + temp[i].getY()) == (actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[j].getY())) memePiece = true;
 				}
-				if(!memePiece && actuel.getPositionPlateau().getX() + temp[i].getX() >= 0 && actuel.getPositionPlateau().getX() + temp[i].getX() < 10 && plateau[actuel.getPositionPlateau().getX() + temp[i].getX()][actuel.getPositionPlateau().getY() + temp[i].getY()]) return true;
+				if(!memePiece && actuel.getPositionPlateau().getX() + temp[i].getX() >= 0 && actuel.getPositionPlateau().getX() + temp[i].getX() < 10 && actuel.getPositionPlateau().getY() + temp[i].getY() >= 0 && actuel.getPositionPlateau().getY() + temp[i].getY() < 15  && plateau[actuel.getPositionPlateau().getX() + temp[i].getX()][actuel.getPositionPlateau().getY() + temp[i].getY()]) return true;
 		}
 		return false;
 	}
