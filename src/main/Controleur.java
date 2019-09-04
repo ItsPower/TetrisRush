@@ -12,7 +12,8 @@ public class Controleur {
 	final static int TRANSLATION_GAUCHE = 113; // q
 
 	final static int ATTENDRE = 115; // s
-	
+	final static int QUITTER = 112; //p
+
 	public static void detectionTouches() {
 		int code;
 		Console console = System.console();
@@ -33,7 +34,10 @@ public class Controleur {
 					Main.getInstance().pi.translationGauche();
 				} else if(code == ATTENDRE) {
 					Main.getInstance().pi.translationBas();
+				} else if(code == QUITTER) {
+					System.exit(0);
 				}
+
 				Main.getInstance().p.piece(Main.getInstance().pi);
 				Main.getInstance().aff.update();
 			}

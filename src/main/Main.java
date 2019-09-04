@@ -69,8 +69,8 @@ public class Main {
 				instance.p.piece(instance.pi);
 				instance.aff.update();
 			}
-			
-		}, 0, 1000);
+		}, 0, 650);
+
 		
 		Controleur.detectionTouches();
 	}

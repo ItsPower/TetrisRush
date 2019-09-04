@@ -4,13 +4,21 @@ public class Piece {
 	
 	private Orientation orientation = Orientation.BAS;
 	private Forme forme;
+	private Color color;
 	private Position positionPlateau = new Position(4,0);
 	private Position positionRelative[] = new Position[4]; //positionRelative[0] = position principale de la piece
 	private Position anciennePosition = new Position(4, 0);
 	private Position anciennePositionRelative[] = new Position[4];
 	
 	public Piece() {
-		this.forme = Forme.randomForme();
+		if(Main.getInstance().pi == null) {
+			this.forme = Forme.randomForme();
+		} else {
+			do {
+				this.forme = Forme.randomForme();
+			} while(this.forme == Main.getInstance().pi.forme);
+		}
+		this.color = Color.random();
 		for(int i = 0 ; i < 4 ; i++) {
 			positionRelative[i] = new Position(forme.getPositionRelative()[i]);
 		}
@@ -24,7 +32,7 @@ public class Piece {
 		}
 		if(!collisionRotation(positionTemp)) {
 			for(int i = 0; i < 4; i++) {
-				Main.getInstance().p.getPlateau()[positionPlateau.getX() + positionRelative[i].getX()][positionPlateau.getY() + positionRelative[i].getY()] = false;
+				Main.getInstance().p.getPlateau()[positionPlateau.getX() + positionRelative[i].getX()][positionPlateau.getY() + positionRelative[i].getY()] = Color.NOCOLOR;
 				anciennePositionRelative[i] = new Position(positionRelative[i]);
 				positionRelative[i].setPosition(positionRelative[i].getY(), positionRelative[i].getX()*-1);
 				positionTemp[i] = new Position(positionRelative[i].getY(), positionRelative[i].getX()*-1);
@@ -40,7 +48,7 @@ public class Piece {
 		}
 		if(!collisionRotation(positionTemp)) {
 			for(int i = 0; i < 4; i++) {
-				Main.getInstance().p.getPlateau()[positionPlateau.getX() + positionRelative[i].getX()][positionPlateau.getY() + positionRelative[i].getY()] = false;
+				Main.getInstance().p.getPlateau()[positionPlateau.getX() + positionRelative[i].getX()][positionPlateau.getY() + positionRelative[i].getY()] = Color.NOCOLOR;
 				anciennePositionRelative[i] = new Position(positionRelative[i]);
 				positionRelative[i].setPosition(positionRelative[i].getY()*-1, positionRelative[i].getX());
 				positionTemp[i] = new Position(positionRelative[i].getY()*-1, positionRelative[i].getX());
@@ -118,7 +126,13 @@ public class Piece {
 				return true;
 			if(positionPlateau.getY() + temp[i].getY() < 0 || positionPlateau.getY() + temp[i].getY() > 15) 
 				return true;
+			if(Main.getInstance().p.collisionRotation(temp))
+				return true;
 		}
 		return false;
+	}
+	
+	public Color getColor() {
+		return Color.valueOf(this.color.name());
 	}
 }

@@ -2,33 +2,33 @@ package main;
 
 public class Plateau {
 	
-	private boolean[][] plateau;
+	private Color[][] plateau;
 	private int x;
 	private int y;
 	
 	public Plateau(int x, int y) {
-		this.plateau = new boolean[x][y];
+		this.plateau = new Color[x][y];
+		for(int i=0; i<x;i++)
+			for(int j=0; j<y;j++) {
+				plateau[i][j] = Color.NOCOLOR;
+			}
 		this.x = x;
 		this.y = y;
 	}
 
-	public void setPlateau(boolean[][] plateau) {
+	public void setPlateau(Color[][] plateau) {
 		this.plateau = plateau;
 	}
 
-	public boolean[][] getPlateau() {
+	public Color[][] getPlateau() {
 		return plateau;
-	}
-	
-	public void changerCase(int x, int y) {
-		this.plateau[x][y] = !this.plateau[x][y];
 	}
 	
 	public void eliminerLignes() {
 		for(int i = plateau[0].length-1 ; i > 0 ; i--) {
 			boolean lignePleine = true;
 			for(int j = 0 ; j < plateau.length ; j++) {
-				if(!plateau[j][i]) lignePleine = false;
+				if(!plateau[j][i].isFull) lignePleine = false;
 			}
 			if(lignePleine) {
 				for(int j = i ; j > 0 ; j--) {
@@ -52,19 +52,6 @@ public class Plateau {
 		}
 	}
 	
-	public void tostring() {
-		for(int i = 0; i < x; i++) {
-			for(int j = 0; j < y; j++) {
-				if(this.plateau[i][j] == true) {
-					System.out.print("1 ");
-				} else {
-					System.out.print("0 ");
-				}
-			}
-			System.out.println();
-		}
-	}
-	
 	public void piece(Piece actuel) {
 		Position temp = actuel.getPositionPlateau();
 		for(int i = 0 ; i < actuel.getPositionRelative().length ; i++) {
@@ -74,7 +61,7 @@ public class Plateau {
 			 */
 			if(actuel.getAnciennePosition() != null && actuel.getAnciennePositionRelative() != null && actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX() >= 0 && actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY() >= 0) {
 				try {
-					plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY()] = false;
+					plateau[actuel.getAnciennePosition().getX() + actuel.getAnciennePositionRelative()[i].getX()][actuel.getAnciennePosition().getY() + actuel.getAnciennePositionRelative()[i].getY()] = Color.NOCOLOR;
 				} catch(ArrayIndexOutOfBoundsException e) {
 					//e.printStackTrace();
 				}
@@ -88,7 +75,7 @@ public class Plateau {
 			 * Son ancienne position est supprimé et se met a faux
 			 */
 			try {
-				plateau[actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[i].getX()][actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[i].getY()] = true;
+				plateau[actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[i].getX()][actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[i].getY()] = actuel.getColor();
 			} catch(ArrayIndexOutOfBoundsException e) {
 				//e.printStackTrace();
 			}
@@ -116,7 +103,7 @@ public class Plateau {
 						basse = actuel.getPositionRelative()[j];
 					}
 				}
-				if(basse.getX() >= 0 && basse.getY() >= 0 && this.plateau[actuel.getPositionPlateau().getX() + basse.getX()][actuel.getPositionPlateau().getY() + basse.getY()+1]) return true;
+				if(basse.getX() >= 0 && basse.getY() >= 0 && this.plateau[actuel.getPositionPlateau().getX() + basse.getX()][actuel.getPositionPlateau().getY() + basse.getY()+1].isFull) return true;
 		}
 		return false;
 	}
@@ -129,8 +116,22 @@ public class Plateau {
 					if((temp.getX() + actuel.getPositionRelative()[i].getX()) == (actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[j].getX())
 							&& (temp.getY() + actuel.getPositionRelative()[i].getY()) == (actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[j].getY())) memePiece = true;
 				}
-				if(!memePiece && temp.getX() + actuel.getPositionRelative()[i].getX() >= 0 && temp.getX() + actuel.getPositionRelative()[i].getX() < 10 && plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()]) return true;
+				if(!memePiece && temp.getX() + actuel.getPositionRelative()[i].getX() >= 0 && temp.getX() + actuel.getPositionRelative()[i].getX() < 10 && plateau[temp.getX() + actuel.getPositionRelative()[i].getX()][temp.getY() + actuel.getPositionRelative()[i].getY()].isFull) return true;
 		}
 		return false;
 	}
+	
+	public boolean collisionRotation(Position[] temp) {
+		Piece actuel = Main.getInstance().pi;
+		for(int i = 0 ; i < temp.length ; i++) {
+				boolean memePiece = false;
+				for(int j = 0 ; j < temp.length ; j++) {
+					if((actuel.getPositionPlateau().getX() + temp[i].getX()) == (actuel.getPositionPlateau().getX() + actuel.getPositionRelative()[j].getX())
+							&& (actuel.getPositionPlateau().getY() + temp[i].getY()) == (actuel.getPositionPlateau().getY() + actuel.getPositionRelative()[j].getY())) memePiece = true;
+				}
+				if(!memePiece && actuel.getPositionPlateau().getX() + temp[i].getX() >= 0 && actuel.getPositionPlateau().getX() + temp[i].getX() < 10 && actuel.getPositionPlateau().getY() + temp[i].getY() >= 0 && actuel.getPositionPlateau().getY() + temp[i].getY() < 15  && plateau[actuel.getPositionPlateau().getX() + temp[i].getX()][actuel.getPositionPlateau().getY() + temp[i].getY()].isFull) return true;
+		}
+		return false;
+	}
+
 }

@@ -49,11 +49,12 @@ public class Affichage{
 			
 		}
 
-		boolean[][] plateau = Main.getInstance().p.getPlateau();
+		Color[][] plateau = Main.getInstance().p.getPlateau();
 		for(int x=0;x<plateau.length;x++)
 			for(int y=0;y<plateau[0].length;y++) {
-				if(plateau[x][y])
-					printCube(new Position(x,y));
+				if(plateau[x][y].isFull) {
+					printCube(new Position(x,y), plateau[x][y]);
+				}
 			}
 		if(!Main.getInstance().isInMenu) {
 			
@@ -66,17 +67,18 @@ public class Affichage{
 		Position base = p.getPositionPlateau();
 		Position[] posis = p.getPositionRelative();
 		for(Position tmp : posis) {
-			printCube(new Position(base.getX() + tmp.getX(), base.getY() + tmp.getY()));
+			Position pos = new Position(base.getX() + tmp.getX(), base.getY() + tmp.getY());
+			printCube(pos, Main.getInstance().p.getPlateau()[pos.getX()][pos.getY()]);
 		}
 	}
 
-	public void printCube(Position pos) { //TODO COULEURS TO ADD
+	public void printCube(Position pos, Color c) {
 
 		curseur(base_y + pos.getY()*2, base_x + pos.getX()*4);
-		syso("\u001B[31m████\u001B[37m");
+		syso(c.color+"████"+Color.WHITE.color);
 
 		curseur(base_y + pos.getY()*2+1, base_x + pos.getX()*4);
-		syso("\u001B[31m████\u001B[37m");
+		syso(c.color+"████"+Color.WHITE.color);
 	}
 
 	public void syso(String s) {
